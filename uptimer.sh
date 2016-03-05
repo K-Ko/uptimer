@@ -67,7 +67,7 @@ for HOST in $HOSTS; do
 
         $CURL --silent \
               -d user="$USER" -d token="$TOKEN" -d device="$DEVICE" \
-              -d title="$TITLE" -d message="$MESSAGE" \
+              -d title="$TITLE" --form-string message="$MESSAGE" \
               -d url="$URL" -d url_title="$URLTITLE" \
               -d priority=${PRIORITY:-0} -d sound=${SOUND:-pushover} \
               $APIURL >/dev/null
