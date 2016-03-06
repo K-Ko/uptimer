@@ -46,9 +46,10 @@ CONFIG=$1
 [ "$MESSAGE" ] || usage 5 'ERROR: Missing message'
 
 HOSTS=$(echo $HOST | sed 's/,/ /g')
-HOST=
-
 PORTS=$(echo ${PORT:-80} | sed 's/,/ /g')
+
+### Initialise loop variable
+HOST=
 
 for HOST in $HOSTS; do
 
@@ -66,11 +67,13 @@ for HOST in $HOSTS; do
         echo [$(date +'%F %T')] $MESSAGE
 
         $CURL --silent \
-              -d user="$USER" -d token="$TOKEN" -d device="$DEVICE" \
-              -d title="$TITLE" --form-string message="$MESSAGE" \
-              -d url="$URL" -d url_title="$URLTITLE" \
-              -d priority=${PRIORITY:-0} -d sound=${SOUND:-pushover} \
-              $APIURL >/dev/null
+              --form-string user="$USER" --form-string token="$TOKEN" \
+              --form-string device="$DEVICE" --form-string title="$TITLE" \
+              --form-string message="$MESSAGE" --form-string html=${HTML:-0} \
+              --form-string url="$URL" --form-string url_title="$URLTITLE" \
+              --form-string priority=${PRIORITY:-0} \
+              --form-string sound=${SOUND:-pushover} \
+              --form-string timestamp=$(date +%s) $APIURL >/dev/null
 
     done
 done

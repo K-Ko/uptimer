@@ -2,6 +2,8 @@
 
 Simple host monitoring script via http://pushover.net
 
+API description: https://pushover.net/api
+
 ## Register yourself
 
 Go to http://pushover.net and register for an account.

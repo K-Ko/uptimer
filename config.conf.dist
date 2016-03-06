@@ -51,6 +51,13 @@ DEVICE=
 TITLE=
 
 ###
+### Message contains HTML
+### optional, default 0
+### https://pushover.net/api#html
+###
+HTML=
+
+###
 ### Supplementary URL
 ### optional
 ###
